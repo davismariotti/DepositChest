@@ -1,0 +1,8 @@
+####DepositChest Configuration####
+#
+#Should players be able to make infinite deposit chests?
+#(not recommended because players could abuse this.
+Infinite-Deposit-Chests: false
+#How many deposit chests should players be able to make?
+#(Ops and people with depositchests.infinite bypass this)
+Maximum-Chests: 3

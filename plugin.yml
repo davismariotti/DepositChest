@@ -1,0 +1,19 @@
+main: me.gomeow.Depositchest
+name: DespositChest
+version: 1.0
+
+commands:
+  dc:
+    description: Gives help to all DepositChest commands.
+
+permissions:
+  depositchest.*:
+    description: All deposit chest permissions.
+    children:
+      depositchest.use: true
+      depositchest.break: true
+  depositchest.use:
+    description: Able to set a deposit chest.
+    default: true
+  depositchest.break:
+    description: Able to break other's deposit chests.
