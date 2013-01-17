@@ -1,6 +1,8 @@
 main: me.gomeow.Depositchest
 name: DespositChest
 version: 1.0
+website: www.dev.bukkit.org/server-mods/depositchest/
+author: gomeow
 
 commands:
   dc:
