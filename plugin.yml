@@ -14,8 +14,11 @@ permissions:
     children:
       depositchest.use: true
       depositchest.break: true
+      depositchest.infinite: true
   depositchest.use:
     description: Able to set a deposit chest.
     default: true
   depositchest.break:
     description: Able to break other's deposit chests.
+  depositchest.infinite:
+    description: Allows one to have infinite deposit chests
