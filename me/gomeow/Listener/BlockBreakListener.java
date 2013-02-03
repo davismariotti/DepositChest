@@ -44,6 +44,7 @@ public class BlockBreakListener implements Listener {
 							return;
 						}
 						else {
+							event.setCancelled(true);
 							p.sendMessage(ChatColor.RED+"You do not have permission to break that chest.");
 							p.sendMessage(ChatColor.RED+"It is called "+ChatColor.GOLD+key+ChatColor.RED+" and is owned by "+ChatColor.GOLD+nameKey+ChatColor.RED+".");
 							return;
@@ -70,6 +71,7 @@ public class BlockBreakListener implements Listener {
 									return;
 								}
 								else {
+									event.setCancelled(true);
 									p.sendMessage(ChatColor.RED+"You do not have permission to break that chest.");
 									p.sendMessage(ChatColor.RED+"It is called "+ChatColor.GOLD+key+ChatColor.RED+" and is owned by "+ChatColor.GOLD+nameKey+ChatColor.RED+".");
 									return;

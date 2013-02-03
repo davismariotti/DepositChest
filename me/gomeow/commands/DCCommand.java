@@ -17,7 +17,7 @@ public class DCCommand {
 	}
 	
 	public void showHelp(CommandSender cs) {
-		if(cs.hasPermission("depositchest.use")) {
+		if(cs.hasPermission("depositchest.user")) {
 			cs.sendMessage(ChatColor.GOLD+"----DepositChest Help----");
 			cs.sendMessage(ChatColor.GOLD+"/dc - "+ChatColor.BLUE+"Shows the help page.");
 			cs.sendMessage(ChatColor.GOLD+"/dc setchest <name> - "+ChatColor.BLUE+"Allows you to set a deposit chest.");
@@ -42,7 +42,7 @@ public class DCCommand {
 	 */
 	public boolean execute(CommandSender cs, String[] args) {
 		if(args.length == 0) {
-			if(cs.hasPermission("depositchest.use")) {
+			if(cs.hasPermission("depositchest.user")) {
 				this.showHelp(cs);
 			}
 			else {
@@ -53,7 +53,7 @@ public class DCCommand {
 			if(args[0].equalsIgnoreCase("info")) {
 				if(cs instanceof Player) {
 					Player p = (Player) cs;
-					if(p.hasPermission("depositchest.info")) {
+					if(p.hasPermission("depositchest.user")) {
 						plugin.info.add(p.getName());
 					}
 					else {
@@ -66,6 +66,29 @@ public class DCCommand {
 					return true;
 				}
 			}
+			else if(args[0].equalsIgnoreCase("list")) {
+				if(cs instanceof Player) {
+					Player p = (Player) cs;
+					if(p.hasPermission("depositchest.user")) {
+						if(!(plugin.cc.getChests().getKeys(false).contains(p.getName()))) {
+							p.sendMessage(ChatColor.RED + "You have no deposit chests!");
+							return true;
+						}
+						if(plugin.cc.getChests().getConfigurationSection(p.getName()).getKeys(false).isEmpty()) {
+							p.sendMessage(ChatColor.RED + "You have no deposit chests!");
+							return true;
+						}
+						p.sendMessage(ChatColor.BLUE + "Your chests:");
+						for(String chestName:plugin.cc.getChests().getConfigurationSection(p.getName()).getKeys(false)) {
+							p.sendMessage(ChatColor.BLUE + " - " + ChatColor.GOLD + chestName);
+						} return true;
+					}
+					else {
+						cs.sendMessage(ChatColor.RED + "You need to be a player to do that!");
+						return true;
+					}
+				}
+			}
 			else {
 				this.showHelp(cs);
 				return true;
@@ -75,7 +98,7 @@ public class DCCommand {
 			if(cs instanceof Player) {
 				Player p = (Player) cs;
 				if(args[0].equalsIgnoreCase("setchest")) {
-					if(p.hasPermission("depositchest.use")) {
+					if(p.hasPermission("depositchest.user")) {
 						for(String nameKey:plugin.cc.getChests().getKeys(false)) {
 							for(String key:plugin.cc.getChests().getConfigurationSection(nameKey).getKeys(false)) {
 								if(key.toLowerCase().equalsIgnoreCase(args[1].toLowerCase())) {
@@ -134,7 +157,28 @@ public class DCCommand {
 						}
 					}
 				}
+				else if(args[0].equalsIgnoreCase("list")) {
+					if(p.hasPermission("depositchest.user")) {
+						if(!(plugin.cc.getChests().getKeys(false).contains(args[1]))) {
+							p.sendMessage(ChatColor.RED + args[1] + " has no deposit chests!");
+							return true;
+						}
+						if(plugin.cc.getChests().getConfigurationSection(args[1]).getKeys(false).isEmpty()) {
+							p.sendMessage(ChatColor.RED + args[1] + " has no deposit chests!");
+							return true;
+						}
+						p.sendMessage(ChatColor.BLUE + args[1] +"\'s chests:");
+						for(String chestName:plugin.cc.getChests().getConfigurationSection(args[1]).getKeys(false)) {
+							p.sendMessage(ChatColor.BLUE + " - " + ChatColor.GOLD + chestName);
+						} 
+						return true;
+					}
+				}
 				else if(args[0].equalsIgnoreCase("remove")) {
+					if(!p.hasPermission("depositchest.user")) {
+						p.sendMessage(ChatColor.RED + "You do not have permission to do that!");
+						return true;
+					}
 					ArrayList<String> namekeys = new ArrayList<String>(plugin.cc.getChests().getKeys(false));
 					if(namekeys.isEmpty()) {
 						p.sendMessage(ChatColor.RED+"There is no Deposit Chest named that.");

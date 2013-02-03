@@ -37,7 +37,7 @@ public class InventoryClickListener implements Listener {
 		if(event.getSlotType() != SlotType.CONTAINER) return; //Make sure it is the chest's inventory.
 		if(event.getInventory().getType() != InventoryType.CHEST) return; //Make sure it was a chest.
 		Player p = (Player) event.getWhoClicked();
-		if(event.getSlot() < 9) return;
+		//if(event.getSlot() < 9) return;
 		if(event.getInventory().getItem(event.getSlot()) != null) { //Make sure it was a withdrawal.
 			InventoryHolder ih = event.getInventory().getHolder();
 			if(ih instanceof Chest) {
