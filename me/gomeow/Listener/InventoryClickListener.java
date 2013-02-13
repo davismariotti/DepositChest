@@ -56,9 +56,7 @@ public class InventoryClickListener implements Listener {
 						String loc1 = world+", "+x.toString()+", "+y.toString()+", "+z.toString();
 						String loc2 = world1+", "+x1.toString()+", "+y1.toString()+", "+z1.toString();
 						if(loc1.equalsIgnoreCase(loc2)) {
-							if(p.getName().equals(nameKey)) {
-							}
-							else {
+							if(!p.getName().equals(nameKey)) {
 								if(!p.hasPermission("depositchest.bypass")) {
 									p.sendMessage("You do not have permission to take from that chest!");
 									event.setCancelled(true);
@@ -88,9 +86,7 @@ public class InventoryClickListener implements Listener {
 						String loc3 = world+", "+x.toString()+", "+y.toString()+", "+z.toString();
 						String loc4 = world1+", "+x1.toString()+", "+y1.toString()+", "+z1.toString();
 						if(loc3.equalsIgnoreCase(loc4)) {
-							if(p.getName().equals(nameKey)) {
-							}
-							else {
+							if(!p.getName().equals(nameKey)) {
 								if(!p.hasPermission("depositchest.bypass")) {
 									p.sendMessage(ChatColor.RED+"You do not have permission to take from that chest!");
 									event.setCancelled(true);
@@ -111,10 +107,7 @@ public class InventoryClickListener implements Listener {
 								String loc5 = world1+", "+x1.toString()+", "+y1.toString()+", "+z1.toString();
 								String loc6 = world2+", "+x2.toString()+", "+y2.toString()+", "+z2.toString();
 								if(loc5.equalsIgnoreCase(loc6)) {
-									if(p.getName().equals(nameKey)) {
-										p.sendMessage("You just took from your chest!");
-									}
-									else {
+									if(!p.getName().equals(nameKey)) {
 										if(!p.hasPermission("depositchest.bypass")) {
 											p.sendMessage("You do not have permission to take from that chest!");
 											event.setCancelled(true);
