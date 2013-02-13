@@ -11,11 +11,6 @@ commands:
 permissions:
   depositchest.*:
     description: All deposit chest permissions.
-    children:
-<<<<<<< HEAD
-      depositchest.use: true
-      depositchest.break: true
-      depositchest.infinite: true
   depositchest.use:
     description: Able to set a deposit chest.
     default: true
@@ -23,12 +18,8 @@ permissions:
     description: Able to break other's deposit chests.
   depositchest.infinite:
     description: Allows one to have infinite deposit chests
-=======
-      depositchest.user: true
-      depositchest.admin: true
   depositchest.user:
     description: All user permissions
     default: true
   depositchest.admin:
     description: All admin permissions
->>>>>>> Add list command
