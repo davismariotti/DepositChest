@@ -1,4 +1,4 @@
-package me.gomeow.Listener;
+package me.gomeow.listener;
 
 import me.gomeow.Depositchest;
 

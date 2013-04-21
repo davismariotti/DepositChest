@@ -3,10 +3,12 @@ package me.gomeow;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import me.gomeow.Listener.BlockBreakListener;
-import me.gomeow.Listener.InteractListener;
-import me.gomeow.Listener.InventoryClickListener;
 import me.gomeow.commands.DCCommand;
+import me.gomeow.listener.BlockBreakListener;
+import me.gomeow.listener.ExplosionListener;
+import me.gomeow.listener.InteractListener;
+import me.gomeow.listener.InventoryClickListener;
+import me.gomeow.listener.InventoryMoveItemListener;
 import me.gomeow.util.ChestsConfig;
 
 import org.bukkit.block.BlockFace;
@@ -48,7 +50,9 @@ public class Depositchest extends JavaPlugin implements Listener {
 		saveDefaultConfig();
 		getServer().getPluginManager().registerEvents(new InteractListener(this), this);
 		getServer().getPluginManager().registerEvents(new InventoryClickListener(this), this);
-		getServer().getPluginManager().registerEvents(new BlockBreakListener(this), this);
+        getServer().getPluginManager().registerEvents(new BlockBreakListener(this), this);
+        getServer().getPluginManager().registerEvents(new InventoryMoveItemListener(this), this);
+        getServer().getPluginManager().registerEvents(new ExplosionListener(this), this);
 		saveConfig();
 		this.infChests = this.getConfig().getBoolean("Infinite-Deposit-Chests", false);
 		if(!this.infChests) {
@@ -64,8 +68,6 @@ public class Depositchest extends JavaPlugin implements Listener {
 			DCCommand command = new DCCommand(this);
 			return command.execute(cs, args);
 		}
-		
-		
 		return false;
 	}
 }

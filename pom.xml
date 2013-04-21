@@ -26,13 +26,7 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
-                    <include>plugin.yml</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>config.yml</include>
+                    <include>*.yml</include>
                 </includes>
             </resource>
         </resources>
@@ -41,7 +35,7 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.5-R0.1-SNAPSHOT</version>
+            <version>1.5.1-R0.2-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
