@@ -29,9 +29,9 @@ public class InventoryClickListener implements Listener {
                 if(event.getInventory().getType() == InventoryType.CHEST) {
                     Player player = (Player) event.getWhoClicked();
                     if(event.getInventory().getItem(event.getSlot()) != null) {
-                        InventoryHolder ih = event.getInventory().getHolder();
-                        if(ih instanceof Chest) {
-                            Chest eventChest = (Chest) ih;
+                        InventoryHolder holder = event.getInventory().getHolder();
+                        if(holder instanceof Chest) {
+                            Chest eventChest = (Chest) holder;
                             Location chestLoc = eventChest.getLocation();
                             String world = chestLoc.getWorld().getName();
                             Integer x = chestLoc.getBlockX();
@@ -58,8 +58,8 @@ public class InventoryClickListener implements Listener {
                                 }
                             }
 
-                        } else if(ih instanceof DoubleChest) {
-                            DoubleChest eventChest = (DoubleChest) ih;
+                        } else if(holder instanceof DoubleChest) {
+                            DoubleChest eventChest = (DoubleChest) holder;
                             Location chestLoc = eventChest.getLocation();
                             String world = chestLoc.getWorld().getName();
                             Integer x = chestLoc.getBlockX();
