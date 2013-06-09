@@ -1,9 +1,9 @@
-package me.gomeow.listener;
+package info.gomeow.listener;
+
+import info.gomeow.Depositchest;
 
 import java.util.Iterator;
 import java.util.List;
-
-import me.gomeow.Depositchest;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -26,9 +26,9 @@ public class ExplosionListener implements Listener {
     public void onEntityExplode(EntityExplodeEvent event) {
         List<Block> blocks = event.blockList();
         synchronized(blocks) {
-            Iterator<Block> it = blocks.iterator();
-            while (it.hasNext()) {
-                Block block = it.next();
+            Iterator<Block> iterator = blocks.iterator();
+            while(iterator.hasNext()) {
+                Block block = iterator.next();
                 int id = block.getTypeId();
                 if(id == 54) {
                     if(block.getState() instanceof Chest) {
@@ -38,16 +38,16 @@ public class ExplosionListener implements Listener {
                         Integer x = chestLoc.getBlockX();
                         Integer y = chestLoc.getBlockY();
                         Integer z = chestLoc.getBlockZ();
-                        for(String nameKey:plugin.cc.getChests().getKeys(false)) {
-                            for(String key:plugin.cc.getChests().getConfigurationSection(nameKey).getKeys(false)) {
-                                String world1 = plugin.cc.getChests().getString(nameKey+"."+key+".World"); 
-                                Integer x1 = plugin.cc.getChests().getInt(nameKey+"."+key+".X");
-                                Integer y1 = plugin.cc.getChests().getInt(nameKey+"."+key+".Y");
-                                Integer z1 = plugin.cc.getChests().getInt(nameKey+"."+key+".Z");
-                                String loc1 = world+", "+x.toString()+", "+y.toString()+", "+z.toString();
-                                String loc2 = world1+", "+x1.toString()+", "+y1.toString()+", "+z1.toString();
+                        for(String nameKey:plugin.chestConfig.getChests().getKeys(false)) {
+                            for(String key:plugin.chestConfig.getChests().getConfigurationSection(nameKey).getKeys(false)) {
+                                String world1 = plugin.chestConfig.getChests().getString(nameKey + "." + key + ".World");
+                                Integer x1 = plugin.chestConfig.getChests().getInt(nameKey + "." + key + ".X");
+                                Integer y1 = plugin.chestConfig.getChests().getInt(nameKey + "." + key + ".Y");
+                                Integer z1 = plugin.chestConfig.getChests().getInt(nameKey + "." + key + ".Z");
+                                String loc1 = world + ", " + x.toString() + ", " + y.toString() + ", " + z.toString();
+                                String loc2 = world1 + ", " + x1.toString() + ", " + y1.toString() + ", " + z1.toString();
                                 if(loc1.equalsIgnoreCase(loc2)) {
-                                    it.remove();
+                                    iterator.remove();
                                 }
                             }
                         }
@@ -58,27 +58,27 @@ public class ExplosionListener implements Listener {
                         Integer x = chestLoc.getBlockX();
                         Integer y = chestLoc.getBlockY();
                         Integer z = chestLoc.getBlockZ();
-                        for(String nameKey:plugin.cc.getChests().getKeys(false)) {
-                            for(String key:plugin.cc.getChests().getConfigurationSection(nameKey).getKeys(false)) {
-                                String world1 = plugin.cc.getChests().getString(nameKey+"."+key+".World"); 
-                                Integer x1 = plugin.cc.getChests().getInt(nameKey+"."+key+".X");
-                                Integer y1 = plugin.cc.getChests().getInt(nameKey+"."+key+".Y");
-                                Integer z1 = plugin.cc.getChests().getInt(nameKey+"."+key+".Z");
-                                String loc1 = world+", "+x.toString()+", "+y.toString()+", "+z.toString();
-                                String loc2 = world1+", "+x1.toString()+", "+y1.toString()+", "+z1.toString();
+                        for(String nameKey:plugin.chestConfig.getChests().getKeys(false)) {
+                            for(String key:plugin.chestConfig.getChests().getConfigurationSection(nameKey).getKeys(false)) {
+                                String world1 = plugin.chestConfig.getChests().getString(nameKey + "." + key + ".World");
+                                Integer x1 = plugin.chestConfig.getChests().getInt(nameKey + "." + key + ".X");
+                                Integer y1 = plugin.chestConfig.getChests().getInt(nameKey + "." + key + ".Y");
+                                Integer z1 = plugin.chestConfig.getChests().getInt(nameKey + "." + key + ".Z");
+                                String loc1 = world + ", " + x.toString() + ", " + y.toString() + ", " + z.toString();
+                                String loc2 = world1 + ", " + x1.toString() + ", " + y1.toString() + ", " + z1.toString();
                                 if(loc1.equalsIgnoreCase(loc2)) {
-                                    it.remove();
+                                    iterator.remove();
                                 } else {
-                                    for(BlockFace bf:plugin.bfs) {
+                                    for(BlockFace bf:plugin.faces) {
                                         Location chestLoc2 = eventChest.getLocation().getBlock().getRelative(bf).getLocation();
                                         String world2 = chestLoc2.getWorld().getName();
                                         Integer x2 = chestLoc2.getBlockX();
                                         Integer y2 = chestLoc2.getBlockY();
                                         Integer z2 = chestLoc2.getBlockZ();
-                                        String loc3 = world1+", "+x1.toString()+", "+y1.toString()+", "+z1.toString();
-                                        String loc4 = world2+", "+x2.toString()+", "+y2.toString()+", "+z2.toString();
+                                        String loc3 = world1 + ", " + x1.toString() + ", " + y1.toString() + ", " + z1.toString();
+                                        String loc4 = world2 + ", " + x2.toString() + ", " + y2.toString() + ", " + z2.toString();
                                         if(loc3.equalsIgnoreCase(loc4)) {
-                                            it.remove();
+                                            iterator.remove();
                                         }
                                     }
                                 }
